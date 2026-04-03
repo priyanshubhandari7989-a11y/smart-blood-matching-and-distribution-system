@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #c0392b;
+    text-align: center;
+}
+
+.container {
+    max-width: 480px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.btn-find {
+    width: 100%;
+    padding: 10px;
+    background-color: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.btn-find:hover {
+    background-color: #a93226;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.result-box.success {
+    background-color: #eafaf1;
+    border: 1px solid #27ae60;
+    color: #1e8449;
+}
+
+.result-box.error {
+    background-color: #fdedec;
+    border: 1px solid #c0392b;
+    color: #922b21;
+}
