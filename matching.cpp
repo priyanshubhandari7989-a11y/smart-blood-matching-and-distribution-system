@@ -1,26 +1,44 @@
-// Implementation of Blood Matching Engine
 #include <iostream>
-#include <vector>
-#include <queue>
+#include "matching.h"
 #include "graph.h"
-
 using namespace std;
 
-class BloodMatcher {
-public:
-    void matchBlood(const vector<int>& donors, const vector<int>& recipients);
-};
+// Blood compatibility
+bool isCompatible(string donor, string receiver) {
+    if (receiver == "O-") return donor == "O-";
+    if (receiver == "O+") return donor == "O-" || donor == "O+";
+    if (receiver == "A+") return donor == "A+" || donor == "A-" || donor == "O+" || donor == "O-";
+    if (receiver == "B+") return donor == "B+" || donor == "B-" || donor == "O+" || donor == "O-";
+    if (receiver == "AB+") return true;
+    if (receiver == "A-") return donor == "A-" || donor == "O-";
+    if (receiver == "B-") return donor == "B-" || donor == "O-";
+    if (receiver == "AB-") return donor == "A-" || donor == "B-" || donor == "AB-" || donor == "O-";
+    return false;
+}
 
-void BloodMatcher::matchBlood(const vector<int>& donors, const vector<int>& recipients) {
-    priority_queue<int, vector<int>, greater<int>> pq;
-    // Implement greedy matching algorithm
-    for (int donor : donors) {
-        pq.push(donor);
-    }
-    cout << "Matched blood types:\n";
-    while (!pq.empty()) {
-        int donor = pq.top();
-        pq.pop();
-        cout << donor << endl;
+// Matching logic
+void findMatches(vector<Donor>& donors, Patient& patient) {
+
+    // Create graph (5 locations example)
+    Graph g(5);
+
+    g.addEdge(0,1,10);
+    g.addEdge(0,2,20);
+    g.addEdge(1,3,15);
+    g.addEdge(2,4,30);
+
+    // Get shortest distances from patient location
+    vector<int> dist = g.dijkstra(patient.location);
+
+    cout << "\n--- Matching Donors ---\n";
+
+    for(auto &d : donors) {
+        if(d.available && isCompatible(d.bloodGroup, patient.bloodRequired)) {
+
+            cout << "Donor: " << d.name
+                 << " | Blood: " << d.bloodGroup
+                 << " | Distance: " << dist[d.location]
+                 << endl;
+        }
     }
 }

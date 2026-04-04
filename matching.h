@@ -1,11 +1,25 @@
-// Blood matching header file
 #ifndef MATCHING_H
 #define MATCHING_H
-#include <vector>
 
-class BloodMatcher {
-public:
-    void matchBlood(const std::vector<int>& donors, const std::vector<int>& recipients);
+#include <string>
+#include <vector>
+using namespace std;
+
+struct Donor {
+    string name;
+    string bloodGroup;
+    int location;
+    bool available;
 };
 
-#endif // MATCHING_H
+struct Patient {
+    string name;
+    string bloodRequired;
+    int location;
+    int urgency;
+};
+
+bool isCompatible(string donor, string receiver);
+void findMatches(vector<Donor>& donors, Patient& patient);
+
+#endif
