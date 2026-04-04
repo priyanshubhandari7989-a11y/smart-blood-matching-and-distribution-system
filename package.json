@@ -1,0 +1,25 @@
+{
+  "name": "smart-blood-matching-and-distribution-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priyanshubhandari7989-a11y/smart-blood-matching-and-distribution-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/priyanshubhandari7989-a11y/smart-blood-matching-and-distribution-system/issues"
+  },
+  "homepage": "https://github.com/priyanshubhandari7989-a11y/smart-blood-matching-and-distribution-system#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.4.0"
+  }
+}

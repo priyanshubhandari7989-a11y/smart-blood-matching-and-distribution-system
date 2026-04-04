@@ -1,12 +1,24 @@
-// Header file for Admin Module
-
 #ifndef ADMIN_H
 #define ADMIN_H
 
-// Function declarations for admin features
+#include <string>
+#include <vector>
+#include <ctime>
+using namespace std;
 
-void logActivity(const char* activity);
-void showSystemStats();
-void analyzeComplexity();
+// Activity Log Structure
+struct ActivityLog {
+    time_t timestamp;
+    string action;
+    string details;
+    string status;
 
-#endif // ADMIN_H
+    ActivityLog(string action, string details, string status) {
+        this->action = action;
+        this->details = details;
+        this->status = status;
+        this->timestamp = time(0);
+    }
+};
+
+#endif

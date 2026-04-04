@@ -1,8 +1,24 @@
 #include <iostream>
-#include "blood_bank.h"
+#include "admin.cpp"
+using namespace std;
 
 int main() {
-    // This is where the main program logic will be implemented.
-    std::cout << "Welcome to the Smart Blood Matching and Distribution System!" << std::endl;
+
+    AdminDashboard admin;
+
+    // Log some activities
+    admin.logActivity("PATIENT_REQUEST", "A+ blood needed", "SUCCESS");
+    admin.logActivity("MATCHING", "Found 2 donors", "SUCCESS");
+    admin.logActivity("ALLOCATION", "Assigned donor Rahul", "SUCCESS");
+
+    // Display logs
+    admin.displayLogs();
+
+    // Show stats (example values)
+    admin.showStats(5, 3);
+
+    // Generate report
+    admin.generateReport();
+
     return 0;
 }

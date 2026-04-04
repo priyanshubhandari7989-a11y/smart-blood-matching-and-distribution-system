@@ -1,13 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Blood Matching System</title>
+    <title>Blood System</title>
+    <style>
+        body { font-family: Arial; background: #ff4b2b; color: white; text-align:center; }
+        .box { background:white; color:black; padding:20px; margin:20px auto; width:350px; border-radius:10px; }
+        input { margin:5px; padding:8px; width:90%; }
+        button { padding:10px; background:red; color:white; border:none; }
+        .card { background:#eee; padding:10px; margin:10px; border-radius:8px; color:black; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Blood Matching System</h1>
-    <script src="script.js"></script>
+
+<h1>🩸 Blood System</h1>
+
+<div class="box">
+    <h3>Patient Module</h3>
+    <input id="name" placeholder="Name">
+    <input id="blood" placeholder="Blood">
+    <input id="location" placeholder="Location">
+    <input id="urgency" placeholder="Urgency">
+    <button onclick="match()">Find Donor</button>
+</div>
+
+<div class="box">
+    <h3>Add Donor</h3>
+    <input id="dname" placeholder="Name">
+    <input id="dblood" placeholder="Blood">
+    <input id="dlocation" placeholder="Location">
+    <button onclick="addDonor()">Add</button>
+</div>
+
+<div class="box">
+    <h3>Matching Result</h3>
+    <div id="result"></div>
+</div>
+
+<script>
+function match(){
+    fetch("/run",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            name:name.value,
+            blood:blood.value,
+            location:location.value,
+            urgency:urgency.value
+        })
+    })
+    .then(res=>res.text())
+    .then(data=>{
+        let lines = data.split("\n");
+        let html = "";
+
+        for(let line of lines){
+            if(line.includes(",")){
+                let [n,b,l] = line.split(",");
+                html += `<div class="card">
+                    <b>${n}</b><br>
+                    Blood: ${b}<br>
+                    Location: ${l}
+                </div>`;
+            }
+        }
+
+        result.innerHTML = html;
+    });
+}
+
+function addDonor(){
+    fetch("/add-donor",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+            name:dname.value,
+            blood:dblood.value,
+            location:dlocation.value
+        })
+    })
+    .then(()=>alert("Donor Added"));
+}
+</script>
+
 </body>
 </html>
